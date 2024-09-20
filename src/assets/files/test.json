@@ -1,0 +1,36 @@
+[
+  {
+    "id": 1,
+    "name": "CMH9",
+    "drops": [
+      { "dropNumber": 1, "time": "09:00" },
+      { "dropNumber": 2, "time": "09:15" },
+      { "dropNumber": 3, "time": "09:30" }
+    ],
+    "sessions": 5,
+    "script": "script1",
+    "config": "value"
+  },
+  {
+    "id": 2,
+    "name": "CMH10",
+    "drops": [
+      { "dropNumber": 1, "time": "10:00" },
+      { "dropNumber": 2, "time": "10:15" }
+    ],
+    "sessions": 3,
+    "script": "script2",
+    "config":  "anotherValue" 
+  },
+  {
+    "id": "3",
+    "name": "CMH15",
+    "drops": [
+      { "dropNumber": 1, "time": "10:00" },
+      { "dropNumber": 2, "time": "10:15" }
+    ],
+    "sessions": 3,
+    "script": "script2",
+    "config":  "anotherValue" 
+  }
+]
