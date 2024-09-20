@@ -8,7 +8,7 @@ export default function Configuration() {
 
   // Fetch the JSON file when the component mounts
   useEffect(() => {
-    fetch("./src/assets/files/test.json") // Adjust path based on your project structure
+    fetch("/files/test.json") // Adjust path based on your project structure
       .then((response) => response.json())
       .then((data) => setEntities(data))
       .catch((error) => console.error("Error loading JSON:", error));
