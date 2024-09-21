@@ -23,7 +23,7 @@ export default function Configuration() {
       <tr key={index} className="border-b">
         <td className="py-3 px-5">{entity.name}</td>
         <td className="py-3 px-5">{entity.drops.length}</td>
-        <td className="py-3 px-5">{entity.sessions}</td>
+        <td className="py-3 px-5">{entity.sessionNames.length}</td>
         <td className="py-3 px-5">{entity.script}</td>
         <td className="py-3 px-5">{JSON.stringify(entity.config)}</td>
         <td className="py-3 px-5">

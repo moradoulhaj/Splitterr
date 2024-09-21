@@ -5,10 +5,11 @@
     "drops": [
       { "dropNumber": 1, "time": "09:00" },
       { "dropNumber": 2, "time": "09:15" },
-      { "dropNumber": 3, "time": "09:30" }
+      { "dropNumber": 3, "time": "09:30" },
+      { "dropNumber": 4, "time": "09:30" }
     ],
-    "sessions": 5,
-    "sessionNames": ["Session 1" , "222222"],
+    "sessions": 1,
+    "sessionNames": ["Session 1", "ok", "kkk"],
     "script": "script1",
     "config": "value"
   },
@@ -20,7 +21,7 @@
       { "dropNumber": 2, "time": "10:15" }
     ],
     "sessions": 3,
-    "sessionNames": ["Session A", "Session B", "Session C"],
+    "sessionNames": ["Session A", "Session B"],
     "script": "script2",
     "config": "anotherValue"
   },

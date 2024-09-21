@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { splitPerDrops } from "../scripts/excelExport"; // Import the Excel export function
 
 export default function Spliter() {
   const { entityId } = useParams(); // Get entityId from the route
@@ -21,6 +22,7 @@ export default function Spliter() {
       })
       .catch((error) => console.error("Error loading JSON:", error));
   }, [entityId]);
+
   const parseProfiles = (data, expectedSessionCount) => {
     const lines = data.trim().split("\n");
     const profilesObject = {};
@@ -30,7 +32,6 @@ export default function Spliter() {
       const columns = line.split(/\s+/);
       for (let i = 0; i < columns.length; i += 2) {
         const sessionIndex = Math.floor(i / 2);
-
         const profile = columns[i];
         const tag = columns[i + 1];
 
@@ -88,15 +89,26 @@ export default function Spliter() {
     const profileNumber = parseInt(profile, 10);
     return !isNaN(profileNumber) && Number.isInteger(profileNumber);
   };
+
   const handleFileLoad = (fileName, expectedSessionCount) => {
     fetch(`/profiles/${fileName}`)
       .then((response) => response.text())
       .then((data) => {
+        toast.success("Profiles loaded successfully");
         const parsedData = parseProfiles(data, expectedSessionCount);
         setProfilesData(parsedData);
         setShowTable(true);
       })
       .catch((error) => console.error("Error loading TXT file:", error));
+  };
+
+  const handleExportToExcel = () => {
+    if (profilesData) {
+      splitPerDrops(profilesData,entity.drops.length); // Call the separated Excel export function
+      toast.success("Excel file generated");
+    } else {
+      toast.error("No data available to export");
+    };
   };
 
   if (!entity) {
@@ -181,9 +193,21 @@ export default function Spliter() {
         </div>
       )}
 
-      <div className="mt-8">
+      <div className="mt-8 flex gap-3">
+        <button
+          onClick={handleExportToExcel} // Trigger Excel export
+          className="px-4 py-2 bg-green-600 text-white font-semibold rounded-md shadow hover:bg-green-500"
+        >
+          Generate Excel
+        </button>
         <button className="px-4 py-2 bg-indigo-600 text-white font-semibold rounded-md shadow hover:bg-indigo-500">
-          Save
+          Generate Schedule
+        </button>
+        <button className="px-4 py-2 bg-indigo-600 text-white font-semibold rounded-md shadow hover:bg-indigo-500">
+          Generate files
+        </button>
+        <button className="px-4 py-2 bg-indigo-600 text-white font-semibold rounded-md shadow hover:bg-indigo-500">
+          Generate Zipped Output
         </button>
       </div>
       <ToastContainer />
